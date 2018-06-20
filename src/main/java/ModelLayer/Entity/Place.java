@@ -1,12 +1,29 @@
 package ModelLayer.Entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "place")
 public class Place {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPlace")
     private int idPlace;
+    @Column(name = "rowPlace")
     private int rowPlace;
+    @Column(name = "sitPlace")
     private int sitPlace;
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    @Column(name = "cinemaPlace")
     private Cinema cinema;
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    @Column(name = "gradePlace")
     private Grade grade;
+//    @Column(name = "active")
+//    private boolean active;
 
     public Place() {
     }
@@ -51,6 +68,14 @@ public class Place {
         this.grade = grade;
     }
 
+//    public boolean isActive() {
+//        return active;
+//    }
+//
+//    public void setActive(boolean active) {
+//        this.active = active;
+//    }
+
     @Override
     public String toString() {
         return "Place{" +
@@ -59,6 +84,7 @@ public class Place {
                 ", sitPlace=" + sitPlace +
                 ", cinema=" + cinema +
                 ", grade=" + grade +
+//                ", active=" + active +
                 '}';
     }
 }

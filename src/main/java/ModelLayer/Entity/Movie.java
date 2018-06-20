@@ -4,6 +4,7 @@ public class Movie {
 
     private int idMovie;
     private String nameMovie;
+    private boolean active;
 
     public Movie() {
     }
@@ -24,11 +25,20 @@ public class Movie {
         this.nameMovie = nameMovie;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
                 "idMovie=" + idMovie +
                 ", nameMovie='" + nameMovie + '\'' +
+                ", active=" + active +
                 '}';
     }
 }

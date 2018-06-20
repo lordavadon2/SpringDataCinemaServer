@@ -6,6 +6,7 @@ public class Price {
     private String costPrice;
     private Session session;
     private Grade grade;
+    private boolean active;
 
     public Price() {
     }
@@ -42,6 +43,14 @@ public class Price {
         this.grade = grade;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Price{" +
@@ -49,6 +58,7 @@ public class Price {
                 ", costPrice='" + costPrice + '\'' +
                 ", session=" + session +
                 ", grade=" + grade +
+                ", active=" + active +
                 '}';
     }
 }

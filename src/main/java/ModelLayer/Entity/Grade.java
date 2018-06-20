@@ -1,9 +1,19 @@
 package ModelLayer.Entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "grade")
 public class Grade {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idGrade")
     private int idGrade;
+    @Column(name = "nameGrade")
     private String nameGrade;
+//    @Column(name = "active")
+//    private boolean active;
 
     public Grade() {
     }
@@ -24,11 +34,20 @@ public class Grade {
         this.nameGrade = nameGrade;
     }
 
+//    public boolean isActive() {
+//        return active;
+//    }
+//
+//    public void setActive(boolean active) {
+//        this.active = active;
+//    }
+
     @Override
     public String toString() {
         return "Grade{" +
                 "idGrade=" + idGrade +
                 ", nameGrade='" + nameGrade + '\'' +
+//                ", active=" + active +
                 '}';
     }
 }

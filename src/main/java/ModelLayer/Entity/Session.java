@@ -9,6 +9,7 @@ public class Session {
     private Date dateSession;
     private Time timeSession;
     private Movie movie;
+    private boolean active;
 
     public Session() {
     }
@@ -45,6 +46,14 @@ public class Session {
         this.movie = movie;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Session{" +
@@ -52,6 +61,7 @@ public class Session {
                 ", dateSession=" + dateSession +
                 ", timeSession=" + timeSession +
                 ", movie=" + movie +
+                ", active=" + active +
                 '}';
     }
 }
