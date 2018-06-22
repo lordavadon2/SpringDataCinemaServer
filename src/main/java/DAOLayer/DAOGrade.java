@@ -1,6 +1,6 @@
 package DAOLayer;
 
-import Hibernate.SessionUtil;
+
 import ModelLayer.Entity.Grade;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -18,7 +18,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
 
     public Grade getByIdGrade(int id) {
         openTransactionSession();
-        String sql = "SELECT * FROM ADDRESS WHERE ID = :id";
+        String sql = "SELECT * FROM cinemadb.grade WHERE ID = :id";
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Grade.class);
         query.setParameter("id", id);
@@ -29,7 +29,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
 
     public List<Grade> getAlldGrade() {
         openTransactionSession();
-        String sql = "SELECT * FROM cinemadb";
+        String sql = "SELECT * FROM cinemadb.grade";
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Grade.class);
         List<Grade> addressList = query.list();
@@ -45,6 +45,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
     }
 
     public void diactivedGrade(Grade removedGrade) {
-
+        removedGrade.setActive(false);
+        updatedGrade(removedGrade);
     }
 }

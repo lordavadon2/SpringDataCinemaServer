@@ -1,14 +1,28 @@
 package ModelLayer.Entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "price")
 public class Price {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPrice")
     private int idPrice;
-    private String costPrice;
+    @OneToOne
+    @JoinColumn(name = "sessionPrice")
     private Session session;
+    @OneToOne
+    @JoinColumn(name = "gradePrice")
     private Grade grade;
+    @Column(name = "costPrice")
+    private int costPrice;
+    @Column(name = "activePrice")
     private boolean active;
 
     public Price() {
+        this.active = true;
     }
 
     public int getIdPrice() {
@@ -19,11 +33,11 @@ public class Price {
         this.idPrice = idPrice;
     }
 
-    public String getCostPrice() {
+    public int getCostPrice() {
         return costPrice;
     }
 
-    public void setCostPrice(String costPrice) {
+    public void setCostPrice(int costPrice) {
         this.costPrice = costPrice;
     }
 

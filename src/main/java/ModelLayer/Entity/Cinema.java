@@ -10,12 +10,13 @@ public class Cinema {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCinema")
     private int idCinema;
-    @Column(name = "nameCinema")
+    @Column(name = "nameCinema" )
     private String nameCinema;
-//    @Column(name = "active")
-//    private boolean active;
+    @Column(name = "activeCinema")
+    private boolean active;
 
     public Cinema() {
+        this.active = true;
     }
 
     public int getIdCinema() {
@@ -34,20 +35,20 @@ public class Cinema {
         this.nameCinema = nameCinema;
     }
 
-//    public boolean isActive() {
-//        return active;
-//    }
-//
-//    public void setActive(boolean active) {
-//        this.active = active;
-//    }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     @Override
     public String toString() {
         return "Cinema{" +
                 "idCinema=" + idCinema +
                 ", nameCinema='" + nameCinema + '\'' +
- //               ", active=" + active +
+                ", active=" + active +
                 '}';
     }
 }

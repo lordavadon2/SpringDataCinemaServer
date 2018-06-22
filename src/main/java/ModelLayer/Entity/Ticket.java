@@ -1,13 +1,28 @@
 package ModelLayer.Entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ticket")
 public class Ticket {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idTicket")
     private int idTicket;
+    @OneToOne
+    @JoinColumn(name = "placeTicket")
     private Place placeTicket;
+    @OneToOne
+    @JoinColumn(name = "priceTicket")
     private Price priceTicket;
+    @Column(name = "orderTicket")
+    private int OrderTicket;
+    @Column(name = "activeTicket")
     private boolean active;
 
     public Ticket() {
+        this.active = true;
     }
 
     public int getIdTicket() {
@@ -34,6 +49,14 @@ public class Ticket {
         this.priceTicket = priceTicket;
     }
 
+    public int getOrderTicket() {
+        return OrderTicket;
+    }
+
+    public void setOrderTicket(int orderTicket) {
+        OrderTicket = orderTicket;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -48,6 +71,7 @@ public class Ticket {
                 "idTicket=" + idTicket +
                 ", placeTicket=" + placeTicket +
                 ", priceTicket=" + priceTicket +
+                ", OrderTicket=" + OrderTicket +
                 ", active=" + active +
                 '}';
     }

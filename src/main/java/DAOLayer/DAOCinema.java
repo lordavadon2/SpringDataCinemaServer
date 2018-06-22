@@ -1,6 +1,5 @@
 package DAOLayer;
 
-import Hibernate.SessionUtil;
 import ModelLayer.Entity.Cinema;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -18,7 +17,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
 
     public Cinema getByIdCinema(int id) {
         openTransactionSession();
-        String sql = "SELECT * FROM cinemadb WHERE ID = :id";
+        String sql = "SELECT * FROM cinemadb.cinema WHERE ID = :id";
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Cinema.class);
         query.setParameter("id", id);
@@ -29,7 +28,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
 
     public List<Cinema> getAllCinema() {
         openTransactionSession();
-        String sql = "SELECT * FROM cinemadb";
+        String sql = "SELECT * FROM cinemadb.cinema";
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Cinema.class);
         List<Cinema> addressList = query.list();
@@ -45,6 +44,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
     }
 
     public void diactivedCinema(Cinema removedCinema) {
-
+        removedCinema.setActive(false);
+        updateCinema(removedCinema);
     }
 }

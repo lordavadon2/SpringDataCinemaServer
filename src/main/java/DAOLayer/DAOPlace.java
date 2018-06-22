@@ -1,6 +1,5 @@
 package DAOLayer;
 
-import Hibernate.SessionUtil;
 import ModelLayer.Entity.Place;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -24,7 +23,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
 
     public Place getByIdPlace(int id) {
         openTransactionSession();
-        String sql = "SELECT * FROM ADDRESS WHERE ID = :id";
+        String sql = "SELECT * FROM cinemadb.place WHERE ID = :id";
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Place.class);
         query.setParameter("id", id);
@@ -35,7 +34,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
 
     public List<Place> getAlldPlace() {
         openTransactionSession();
-        String sql = "SELECT * FROM cinemadb";
+        String sql = "SELECT * FROM cinemadb.place";
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Place.class);
         List<Place> addressList = query.list();
@@ -51,6 +50,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
     }
 
     public void diactivedPlace(Place removedPlace) {
-
+        removedPlace.setActive(false);
+        updatedPlace(removedPlace);
     }
 }

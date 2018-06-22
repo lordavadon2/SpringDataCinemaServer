@@ -5,7 +5,6 @@ import ModelLayer.Entity.Cinema;
 import java.util.List;
 
 public interface IDAOCinema {
-
     void addCinema(Cinema newCinema);
 
     Cinema getByIdCinema(int id);

@@ -1,4 +1,4 @@
-package Hibernate;
+package DAOLayer;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

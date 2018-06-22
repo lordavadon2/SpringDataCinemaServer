@@ -1,12 +1,22 @@
 package ModelLayer.Entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "movie")
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCinema")
     private int idMovie;
+    @Column(name = "nameMovie")
     private String nameMovie;
+    @Column(name = "activeMovie")
     private boolean active;
 
     public Movie() {
+        this.active = true;
     }
 
     public int getIdMovie() {

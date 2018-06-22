@@ -12,10 +12,11 @@ public class Grade {
     private int idGrade;
     @Column(name = "nameGrade")
     private String nameGrade;
-//    @Column(name = "active")
-//    private boolean active;
+    @Column(name = "activeGrade")
+    private boolean active;
 
     public Grade() {
+        this.active = true;
     }
 
     public int getIdGrade() {
@@ -34,20 +35,20 @@ public class Grade {
         this.nameGrade = nameGrade;
     }
 
-//    public boolean isActive() {
-//        return active;
-//    }
-//
-//    public void setActive(boolean active) {
-//        this.active = active;
-//    }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     @Override
     public String toString() {
         return "Grade{" +
                 "idGrade=" + idGrade +
                 ", nameGrade='" + nameGrade + '\'' +
-//                ", active=" + active +
+                ", active=" + active +
                 '}';
     }
 }

@@ -15,17 +15,16 @@ public class Place {
     @Column(name = "sitPlace")
     private int sitPlace;
     @OneToOne
-    @PrimaryKeyJoinColumn
-    @Column(name = "cinemaPlace")
+    @JoinColumn(name = "cinemaPlace")
     private Cinema cinema;
     @OneToOne
-    @PrimaryKeyJoinColumn
-    @Column(name = "gradePlace")
+    @JoinColumn(name = "gradePlace")
     private Grade grade;
-//    @Column(name = "active")
-//    private boolean active;
+    @Column(name = "activePlace")
+    private boolean active;
 
     public Place() {
+        this.active = true;
     }
 
     public int getIdPlace() {
@@ -68,13 +67,13 @@ public class Place {
         this.grade = grade;
     }
 
-//    public boolean isActive() {
-//        return active;
-//    }
-//
-//    public void setActive(boolean active) {
-//        this.active = active;
-//    }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     @Override
     public String toString() {
@@ -84,7 +83,7 @@ public class Place {
                 ", sitPlace=" + sitPlace +
                 ", cinema=" + cinema +
                 ", grade=" + grade +
-//                ", active=" + active +
+                ", active=" + active +
                 '}';
     }
 }
