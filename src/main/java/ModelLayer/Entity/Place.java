@@ -14,12 +14,12 @@ public class Place {
     private int rowPlace;
     @Column(name = "sitPlace")
     private int sitPlace;
-    @OneToOne
-    @JoinColumn(name = "cinemaPlace")
-    private Cinema cinema;
-    @OneToOne
-    @JoinColumn(name = "gradePlace")
-    private Grade grade;
+    @ManyToOne
+    @JoinColumn(name = "cinemaID")
+    private Cinema cinemaPlace;
+    @ManyToOne
+    @JoinColumn(name = "gradeID")
+    private Grade gradePlace;
     @Column(name = "activePlace")
     private boolean active;
 
@@ -52,19 +52,19 @@ public class Place {
     }
 
     public Cinema getCinema() {
-        return cinema;
+        return cinemaPlace;
     }
 
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
+    public void setCinema(Cinema cinemaPlace) {
+        this.cinemaPlace = cinemaPlace;
     }
 
     public Grade getGrade() {
-        return grade;
+        return gradePlace;
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
+    public void setGrade(Grade gradePlace) {
+        this.gradePlace = gradePlace;
     }
 
     public boolean isActive() {
@@ -81,8 +81,8 @@ public class Place {
                 "idPlace=" + idPlace +
                 ", rowPlace=" + rowPlace +
                 ", sitPlace=" + sitPlace +
-                ", cinema=" + cinema +
-                ", grade=" + grade +
+                ", cinema=" + cinemaPlace +
+                ", grade=" + gradePlace +
                 ", active=" + active +
                 '}';
     }

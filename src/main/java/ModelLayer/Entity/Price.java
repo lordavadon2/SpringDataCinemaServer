@@ -10,12 +10,12 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPrice")
     private int idPrice;
-    @OneToOne
-    @JoinColumn(name = "sessionPrice")
-    private Session session;
-    @OneToOne
-    @JoinColumn(name = "gradePrice")
-    private Grade grade;
+    @ManyToOne
+    @JoinColumn(name = "sessionID")
+    private Session sessionPrice;
+    @ManyToOne
+    @JoinColumn(name = "gradeID")
+    private Grade gradePrice;
     @Column(name = "costPrice")
     private int costPrice;
     @Column(name = "activePrice")
@@ -42,19 +42,19 @@ public class Price {
     }
 
     public Session getSession() {
-        return session;
+        return sessionPrice;
     }
 
-    public void setSession(Session session) {
-        this.session = session;
+    public void setSession(Session sessionPrice) {
+        this.sessionPrice = sessionPrice;
     }
 
     public Grade getGrade() {
-        return grade;
+        return gradePrice;
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
+    public void setGrade(Grade gradePrice) {
+        this.gradePrice = gradePrice;
     }
 
     public boolean isActive() {
@@ -70,8 +70,8 @@ public class Price {
         return "Price{" +
                 "idPrice=" + idPrice +
                 ", costPrice='" + costPrice + '\'' +
-                ", session=" + session +
-                ", grade=" + grade +
+                ", session=" + sessionPrice +
+                ", grade=" + gradePrice +
                 ", active=" + active +
                 '}';
     }

@@ -1,6 +1,7 @@
 package ModelLayer.Entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -14,6 +15,8 @@ public class Movie {
     private String nameMovie;
     @Column(name = "activeMovie")
     private boolean active;
+    @OneToMany(mappedBy = "movieSession")
+    private Set<Session> movieSession;
 
     public Movie() {
         this.active = true;
@@ -41,6 +44,14 @@ public class Movie {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Set<Session> getMovieSession() {
+        return movieSession;
+    }
+
+    public void setMovieSession(Set<Session> movieSession) {
+        this.movieSession = movieSession;
     }
 
     @Override

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "session")
@@ -13,17 +14,18 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idSession")
     private int idSession;
-//    @Column(name = "dateSession")
-//    private Date dateSession;
-//    @Column(name = "timeSession")
-//    private Time timeSession;
     @Column(name = "dateSession")
     private Timestamp dateSession;
-    @OneToOne
-    @JoinColumn(name = "movieSession")
-    private Movie movie;
+    @ManyToOne
+    @JoinColumn(name = "cinemaID")
+    private Cinema cinemaSession;
+    @ManyToOne
+    @JoinColumn(name = "movieID")
+    private Movie movieSession;
     @Column(name = "activeSession")
     private boolean active;
+    @OneToMany(mappedBy = "sessionPrice")
+    private Set<Price> sessionPrice;
 
     public Session() {
         this.active = true;
@@ -37,23 +39,6 @@ public class Session {
         this.idSession = idSession;
     }
 
-//    public Date getDateSession() {
-//        return dateSession;
-//    }
-//
-//    public void setDateSession(Date dateSession) {
-//        this.dateSession = dateSession;
-//    }
-//
-//    public Time getTimeSession() {
-//        return timeSession;
-//    }
-//
-//    public void setTimeSession(Time timeSession) {
-//        this.timeSession = timeSession;
-//    }
-
-
     public Timestamp getDateSession() {
         return dateSession;
     }
@@ -62,12 +47,20 @@ public class Session {
         this.dateSession = dateSession;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public Cinema getCinema() {
+        return cinemaSession;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setCinema(Cinema cinemaSession) {
+        this.cinemaSession = cinemaSession;
+    }
+
+    public Movie getMovie() {
+        return movieSession;
+    }
+
+    public void setMovie(Movie movieSession) {
+        this.movieSession = movieSession;
     }
 
     public boolean isActive() {
@@ -78,13 +71,21 @@ public class Session {
         this.active = active;
     }
 
+    public Set<Price> getSessionPrice() {
+        return sessionPrice;
+    }
+
+    public void setSessionPrice(Set<Price> sessionPrice) {
+        this.sessionPrice = sessionPrice;
+    }
+
     @Override
     public String toString() {
         return "Session{" +
                 "idSession=" + idSession +
                 ", dateSession=" + dateSession +
-//                ", timeSession=" + timeSession +
-                ", movie=" + movie +
+                ", cinema=" + cinemaSession +
+                ", movie=" + movieSession +
                 ", active=" + active +
                 '}';
     }
