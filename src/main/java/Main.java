@@ -1,3 +1,4 @@
+import DAOLayer.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,8 +16,18 @@ public class Main extends Application{
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
         primaryStage.setTitle("Cinema Server");
+        primaryStage.setMinHeight(100);
+        primaryStage.setMaxHeight(100);
+        primaryStage.setMinWidth(500);
+        primaryStage.setMaxWidth(500);
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        HibernateUtil.shutdown();
     }
 }
 
