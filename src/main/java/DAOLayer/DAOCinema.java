@@ -13,6 +13,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
         Session session = getSession();
         session.save(newCinema);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public Cinema getByIdCinema(int id) {
@@ -23,6 +24,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
         query.setParameter("id", id);
         Cinema address = (Cinema) query.getSingleResult();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return address;
     }
 
@@ -33,6 +35,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
         Query query = session.createNativeQuery(sql).addEntity(Cinema.class);
         List<Cinema> addressList = query.list();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -41,6 +44,7 @@ public class DAOCinema extends SessionUtil implements IDAOCinema {
         Session session = getSession();
         session.update(changedCinema);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public void diactivedCinema(Cinema removedCinema) {

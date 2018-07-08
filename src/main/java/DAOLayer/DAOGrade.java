@@ -14,6 +14,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
         Session session = getSession();
         session.save(newGrade);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public Grade getByIdGrade(int id) {
@@ -24,6 +25,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
         query.setParameter("id", id);
         Grade address = (Grade) query.getSingleResult();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return address;
     }
 
@@ -34,6 +36,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
         Query query = session.createNativeQuery(sql).addEntity(Grade.class);
         List<Grade> addressList = query.list();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -42,6 +45,7 @@ public class DAOGrade extends SessionUtil implements IDAOGrade {
         Session session = getSession();
         session.update(changedGrade);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public void diactivedGrade(Grade removedGrade) {

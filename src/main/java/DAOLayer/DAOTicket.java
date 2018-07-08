@@ -12,6 +12,7 @@ public class DAOTicket extends SessionUtil implements IDAOTicket {
         Session session = getSession();
         session.save(newTicket);
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
     }
 
     public Ticket getByIdTicket(int id) {
@@ -22,6 +23,7 @@ public class DAOTicket extends SessionUtil implements IDAOTicket {
         query.setParameter("id", id);
         Ticket address = (Ticket) query.getSingleResult();
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
         return address;
     }
 
@@ -32,6 +34,7 @@ public class DAOTicket extends SessionUtil implements IDAOTicket {
         Query query = session.createNativeQuery(sql).addEntity(Ticket.class);
         List<Ticket> addressList = query.list();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -40,6 +43,7 @@ public class DAOTicket extends SessionUtil implements IDAOTicket {
         Session session = getSession();
         session.update(changedTicket);
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
     }
 
     public void diactivedTicket(Ticket removedTicket) {

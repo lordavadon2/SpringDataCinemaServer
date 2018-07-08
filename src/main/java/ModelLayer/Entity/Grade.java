@@ -1,26 +1,33 @@
 package ModelLayer.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "grade")
-public class Grade {
+public class Grade implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idGrade")
+    @NotNull
     private int idGrade;
     @Column(name = "nameGrade")
+    @NotNull
     private String nameGrade;
     @Column(name = "activeGrade")
+    @NotNull
     private boolean active;
-    @OneToMany(mappedBy = "gradePlace")
-    private Set<Place> gradePlaces;
-    @OneToMany(mappedBy = "gradePrice")
-    private Set<Price> gradePrices;
 
-    public Grade() {
+    public Grade(){
+    }
+
+    public Grade(String nameGrade) {
+        this.nameGrade = nameGrade;
         this.active = true;
     }
 
@@ -46,22 +53,6 @@ public class Grade {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public Set<Place> getGradePlaces() {
-        return gradePlaces;
-    }
-
-    public void setGradePlaces(Set<Place> gradePlaces) {
-        this.gradePlaces = gradePlaces;
-    }
-
-    public Set<Price> getGradePrices() {
-        return gradePrices;
-    }
-
-    public void setGradePrices(Set<Price> gradePrices) {
-        this.gradePrices = gradePrices;
     }
 
     @Override

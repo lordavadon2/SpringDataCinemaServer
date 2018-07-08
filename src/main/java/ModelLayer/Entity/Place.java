@@ -1,29 +1,45 @@
 package ModelLayer.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "place")
-public class Place {
+public class Place implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPlace")
+    @NotNull
     private int idPlace;
     @Column(name = "rowPlace")
+    @NotNull
     private int rowPlace;
     @Column(name = "sitPlace")
+    @NotNull
     private int sitPlace;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cinemaID")
+    @NotNull
     private Cinema cinemaPlace;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "gradeID")
+    @NotNull
     private Grade gradePlace;
     @Column(name = "activePlace")
+    @NotNull
     private boolean active;
 
     public Place() {
+    }
+
+    public Place(int rowPlace, int sitPlace, Cinema cinemaPlace, Grade gradePlace) {
+        this.rowPlace = rowPlace;
+        this.sitPlace = sitPlace;
+        this.cinemaPlace = cinemaPlace;
+        this.gradePlace = gradePlace;
         this.active = true;
     }
 

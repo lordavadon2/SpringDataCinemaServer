@@ -1,27 +1,41 @@
 package ModelLayer.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "price")
-public class Price {
+public class Price implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPrice")
+    @NotNull
     private int idPrice;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "sessionID")
+    @NotNull
     private Session sessionPrice;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "gradeID")
+    @NotNull
     private Grade gradePrice;
     @Column(name = "costPrice")
+    @NotNull
     private int costPrice;
     @Column(name = "activePrice")
+    @NotNull
     private boolean active;
 
-    public Price() {
+    public Price(){
+    }
+
+    public Price(Session sessionPrice, Grade gradePrice, int costPrice) {
+        this.sessionPrice = sessionPrice;
+        this.gradePrice = gradePrice;
+        this.costPrice = costPrice;
         this.active = true;
     }
 

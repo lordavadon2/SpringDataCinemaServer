@@ -12,6 +12,7 @@ public class DAOMovie extends SessionUtil implements IDAOMovie {
         Session session = getSession();
         session.save(newMovie);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public Movie getByIdMovie(int id) {
@@ -22,6 +23,7 @@ public class DAOMovie extends SessionUtil implements IDAOMovie {
         query.setParameter("id", id);
         Movie address = (Movie) query.getSingleResult();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return address;
     }
 
@@ -32,6 +34,7 @@ public class DAOMovie extends SessionUtil implements IDAOMovie {
         Query query = session.createNativeQuery(sql).addEntity(Movie.class);
         List<Movie> addressList = query.list();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -40,6 +43,7 @@ public class DAOMovie extends SessionUtil implements IDAOMovie {
         Session session = getSession();
         session.update(changedMovie);
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
     }
 
     public void diactivedMovie(Movie removedMovie) {

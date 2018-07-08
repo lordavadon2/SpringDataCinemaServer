@@ -11,6 +11,7 @@ public class DAOSession extends SessionUtil implements IDAOSession {
         org.hibernate.Session session = getSession();
         session.save(newSession);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public Session getByIdSession(int id) {
@@ -21,6 +22,7 @@ public class DAOSession extends SessionUtil implements IDAOSession {
         query.setParameter("id", id);
         Session address = (Session) query.getSingleResult();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return address;
     }
 
@@ -31,6 +33,7 @@ public class DAOSession extends SessionUtil implements IDAOSession {
         Query query = session.createNativeQuery(sql).addEntity(Session.class);
         List<Session> addressList = query.list();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -39,6 +42,7 @@ public class DAOSession extends SessionUtil implements IDAOSession {
         org.hibernate.Session session = getSession();
         session.update(changedSession);
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
     }
 
     public void diactivedSession(Session removedSession) {

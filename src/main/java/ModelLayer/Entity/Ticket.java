@@ -1,28 +1,55 @@
 package ModelLayer.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ticket")
-public class Ticket {
+public class Ticket implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTicket")
+    @NotNull
     private int idTicket;
     @OneToOne
     @JoinColumn(name = "placeTicket")
+    @NotNull
     private Place placeTicket;
     @OneToOne
     @JoinColumn(name = "priceTicket")
+    @NotNull
     private Price priceTicket;
     @Column(name = "orderTicket")
+    @NotNull
     private int OrderTicket;
+    @Column(name = "sitPlaceTicket")
+    @NotNull
+    private int sitPlaceTicket;
     @Column(name = "activeTicket")
+    @NotNull
     private boolean active;
 
     public Ticket() {
+    }
+
+    public Ticket(Place placeTicket, Price priceTicket, int orderTicket, int sitPlaceTicket) {
+        this.placeTicket = placeTicket;
+        this.priceTicket = priceTicket;
+        OrderTicket = orderTicket;
+        this.sitPlaceTicket = sitPlaceTicket;
         this.active = true;
+    }
+
+    public Ticket(int idTicket, Place placeTicket, Price priceTicket, int orderTicket, int sitPlaceTicket, boolean active) {
+        this.idTicket = idTicket;
+        this.placeTicket = placeTicket;
+        this.priceTicket = priceTicket;
+        OrderTicket = orderTicket;
+        this.sitPlaceTicket = sitPlaceTicket;
+        this.active = active;
     }
 
     public int getIdTicket() {
@@ -57,6 +84,14 @@ public class Ticket {
         OrderTicket = orderTicket;
     }
 
+    public int getSitPlaceTicket() {
+        return sitPlaceTicket;
+    }
+
+    public void setSitPlaceTicket(int sitPlaceTicket) {
+        this.sitPlaceTicket = sitPlaceTicket;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -72,6 +107,7 @@ public class Ticket {
                 ", placeTicket=" + placeTicket +
                 ", priceTicket=" + priceTicket +
                 ", OrderTicket=" + OrderTicket +
+                ", sitPlaceTicket=" + sitPlaceTicket +
                 ", active=" + active +
                 '}';
     }

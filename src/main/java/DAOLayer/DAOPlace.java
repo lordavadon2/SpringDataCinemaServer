@@ -13,6 +13,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
         Session session = getSession();
         session.save(newPlace);
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
     }
 
     public void addListPlace(List<Place> listPlace) {
@@ -29,6 +30,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
         query.setParameter("id", id);
         Place address = (Place) query.getSingleResult();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return address;
     }
 
@@ -39,6 +41,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
         Query query = session.createNativeQuery(sql).addEntity(Place.class);
         List<Place> addressList = query.list();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -47,6 +50,7 @@ public class DAOPlace extends SessionUtil implements IDAOPlace {
         Session session = getSession();
         session.update(changedPlace);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public void diactivedPlace(Place removedPlace) {

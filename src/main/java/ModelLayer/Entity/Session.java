@@ -1,6 +1,9 @@
 package ModelLayer.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -8,26 +11,39 @@ import java.util.Set;
 
 @Entity
 @Table(name = "session")
-public class Session {
+public class Session implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idSession")
+    @NotNull
     private int idSession;
     @Column(name = "dateSession")
-    private Timestamp dateSession;
-    @ManyToOne
+    @NotNull
+    private String dateSession;
+    @Column(name = "timeSession")
+    @NotNull
+    private String timeSession;
+    @OneToOne
     @JoinColumn(name = "cinemaID")
+    @NotNull
     private Cinema cinemaSession;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "movieID")
+    @NotNull
     private Movie movieSession;
     @Column(name = "activeSession")
+    @NotNull
     private boolean active;
-    @OneToMany(mappedBy = "sessionPrice")
-    private Set<Price> sessionPrice;
 
     public Session() {
+    }
+
+    public Session(String dateSession, String timeSession, Cinema cinemaSession, Movie movieSession) {
+        this.dateSession = dateSession;
+        this.timeSession = timeSession;
+        this.cinemaSession = cinemaSession;
+        this.movieSession = movieSession;
         this.active = true;
     }
 
@@ -39,27 +55,35 @@ public class Session {
         this.idSession = idSession;
     }
 
-    public Timestamp getDateSession() {
+    public String getDateSession() {
         return dateSession;
     }
 
-    public void setDateSession(Timestamp dateSession) {
+    public void setDateSession(String dateSession) {
         this.dateSession = dateSession;
     }
 
-    public Cinema getCinema() {
+    public String getTimeSession() {
+        return timeSession;
+    }
+
+    public void setTimeSession(String timeSession) {
+        this.timeSession = timeSession;
+    }
+
+    public Cinema getCinemaSession() {
         return cinemaSession;
     }
 
-    public void setCinema(Cinema cinemaSession) {
+    public void setCinemaSession(Cinema cinemaSession) {
         this.cinemaSession = cinemaSession;
     }
 
-    public Movie getMovie() {
+    public Movie getMovieSession() {
         return movieSession;
     }
 
-    public void setMovie(Movie movieSession) {
+    public void setMovieSession(Movie movieSession) {
         this.movieSession = movieSession;
     }
 
@@ -71,21 +95,14 @@ public class Session {
         this.active = active;
     }
 
-    public Set<Price> getSessionPrice() {
-        return sessionPrice;
-    }
-
-    public void setSessionPrice(Set<Price> sessionPrice) {
-        this.sessionPrice = sessionPrice;
-    }
-
     @Override
     public String toString() {
         return "Session{" +
                 "idSession=" + idSession +
-                ", dateSession=" + dateSession +
-                ", cinema=" + cinemaSession +
-                ", movie=" + movieSession +
+                ", dateSession='" + dateSession + '\'' +
+                ", timeSession='" + timeSession + '\'' +
+                ", cinemaSession=" + cinemaSession +
+                ", movieSession=" + movieSession +
                 ", active=" + active +
                 '}';
     }

@@ -1,26 +1,32 @@
 package ModelLayer.Entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "cinema")
-public class Cinema {
+public class Cinema implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCinema")
+    @NotNull
     private int idCinema;
     @Column(name = "nameCinema" )
+    @NotNull
     private String nameCinema;
     @Column(name = "activeCinema")
+    @NotNull
     private boolean active;
-    @OneToMany(mappedBy = "cinemaPlace")
-    private Set<Place> cinemaPlaces;
-    @OneToMany(mappedBy = "cinemaSession")
-    private Set<Session> cinemaSessions;
 
     public Cinema() {
+    }
+
+    public Cinema(String nameCinema) {
+        this.nameCinema = nameCinema;
         this.active = true;
     }
 
@@ -46,22 +52,6 @@ public class Cinema {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public Set<Place> getCinemaPlaces() {
-        return cinemaPlaces;
-    }
-
-    public void setCinemaPlaces(Set<Place> cinemaPlaces) {
-        this.cinemaPlaces = cinemaPlaces;
-    }
-
-    public Set<Session> getCinemaSessions() {
-        return cinemaSessions;
-    }
-
-    public void setCinemaSessions(Set<Session> cinemaSessions) {
-        this.cinemaSessions = cinemaSessions;
     }
 
     @Override

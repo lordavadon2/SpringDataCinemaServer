@@ -12,6 +12,7 @@ public class DAOPrice extends SessionUtil implements IDAOPrice{
         Session session = getSession();
         session.save(newPrice);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public Price getByIdPrice(int id) {
@@ -22,6 +23,7 @@ public class DAOPrice extends SessionUtil implements IDAOPrice{
         query.setParameter("id", id);
         Price address = (Price) query.getSingleResult();
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
         return address;
     }
 
@@ -32,6 +34,7 @@ public class DAOPrice extends SessionUtil implements IDAOPrice{
         Query query = session.createNativeQuery(sql).addEntity(Price.class);
         List<Price> addressList = query.list();
         closeTransactionSesstion();
+ //       HibernateUtil.shutdown();
         return addressList;
     }
 
@@ -40,6 +43,7 @@ public class DAOPrice extends SessionUtil implements IDAOPrice{
         Session session = getSession();
         session.update(changedPrice);
         closeTransactionSesstion();
+//        HibernateUtil.shutdown();
     }
 
     public void diactivedPrice(Price removedPrice) {
