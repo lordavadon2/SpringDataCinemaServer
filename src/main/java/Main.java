@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -16,6 +17,8 @@ public class Main extends Application{
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
         primaryStage.setTitle("Cinema Server");
+//        Image ico = new Image("resources/images/server.png");
+//        primaryStage.getIcons().add(ico);
         primaryStage.setMinHeight(100);
         primaryStage.setMaxHeight(100);
         primaryStage.setMinWidth(500);

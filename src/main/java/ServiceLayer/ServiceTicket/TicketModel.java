@@ -1,5 +1,6 @@
 package ServiceLayer.ServiceTicket;
 
+import DAOLayer.DAOTicket;
 import DAOLayer.HibernateUtil;
 import DAOLayer.IDAOTicket;
 import ModelLayer.Entity.Ticket;
@@ -13,12 +14,12 @@ public class TicketModel implements ITicketModel{
     private Ticket ticket;
     private IDAOTicket daoTicket;
 
-    public TicketModel() {
+    {
+        ticket = new Ticket();
+        daoTicket = new DAOTicket();
     }
 
-    public TicketModel(Ticket ticket, IDAOTicket daoTicket) {
-        this.ticket = ticket;
-        this.daoTicket = daoTicket;
+    public TicketModel() {
     }
 
     public void addTicket(Ticket newTicket) {

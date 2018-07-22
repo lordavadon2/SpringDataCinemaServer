@@ -2,6 +2,7 @@ package controller;
 
 import DAOLayer.DAOTicket;
 import ModelLayer.Entity.Ticket;
+import ServiceLayer.ServiceCinema.CinemaModel;
 import ServiceLayer.ServiceTicket.TicketModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +14,8 @@ import javax.xml.ws.Endpoint;
 
 public class MainController{
 
-    Endpoint endpoint = Endpoint.create(new TicketModel(new Ticket(), new DAOTicket()));
+    Endpoint endpointTicket = Endpoint.create(new TicketModel());
+    Endpoint endpointCinema = Endpoint.create(new CinemaModel());
     @FXML
     private Label status;
     @FXML
@@ -22,7 +24,8 @@ public class MainController{
    private Button btnStop;
 
     public void actStart(ActionEvent actionEvent) {
-       endpoint.publish("http://localhost:8080/ws/ticket");
+       endpointTicket.publish("http://localhost:8080/ws/ticket");
+       endpointCinema.publish("http://localhost:8080/ws/cinema");
        status.setTextFill(Paint.valueOf("#36fb05"));
        status.setText("Работает");
        btnStart.setDisable(true);
@@ -31,7 +34,8 @@ public class MainController{
 
 
     public void actStop(ActionEvent actionEvent) {
-        endpoint.stop();
+        endpointTicket.stop();
+        endpointCinema.stop();
         status.setTextFill(Paint.valueOf("#f90404"));
         status.setText("Остановлен");
         btnStart.setDisable(false);
